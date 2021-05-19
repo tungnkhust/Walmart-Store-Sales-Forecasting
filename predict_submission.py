@@ -1,16 +1,5 @@
-import pandas as pd
-import pickle
 from process import *
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.svm import LinearSVR
-from sklearn.model_selection import train_test_split
-from metrics import weighted_mean_absolute_error
-
-
-
-def load_model(model_path):
-    model = pickle.load(open(model_path, 'rb'))
-    return model
+from utils import load_model
 
 
 def predict_submission(model_path, submission_path, test_path, feature_path, store_path):
@@ -51,6 +40,7 @@ def main():
         feature_path=feature_path,
         store_path=store_path
     )
+
 
 if __name__ == '__main__':
     main()

@@ -72,10 +72,11 @@ def main():
     y_test = test_df['Weekly_Sales'].to_numpy()
     X_test = process_pipeline(test_df.drop(columns=['Weekly_Sales']))
 
-
     weight = get_weight(test_df)['weight'].to_numpy()
     model = train(X_train, y_train, X_test, y_test, weight)
     filename = 'model.sav'
     pickle.dump(model, open(filename, 'wb'))
 
-main()
+
+if __name__ == '__main__':
+    main()

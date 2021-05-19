@@ -115,22 +115,13 @@ def get_weight(df):
     return df
 
 
-def process_pipeline(df: pd.DataFrame):
-    df = process_date(df)
-    df = fill_na(df)
-    df = process_markdown_na(df)
-
+def convert_type(x):
     type_ = {
         'A': 3,
         'B': 2,
         'C': 1
     }
-
-    df['Type_'] = df['Type'].apply(lambda x: type_[x])
-    df_numeric = df[['Store', 'Dept', 'IsHoliday', 'Week', 'Size', 'Year', 'Type_']]
-    x1 = df_numeric.to_numpy()
-
-    return x1
+    return type_[x]
 
 
 def process_df(df: pd.DataFrame):
@@ -159,3 +150,15 @@ def process_df(df: pd.DataFrame):
     df['Type_'] = df['Type'].apply(lambda x: type_[x])
     # -----
     return df
+
+
+def process_pipeline(df: pd.DataFrame):
+    df = process_date(df)
+    # df = fill_na(df)
+    # df = process_markdown_na(df)
+
+    df['Type_'] = df['Type'].apply(lambda x: convert_type(x))
+    df_numeric = df[['Store', 'Dept', 'IsHoliday', 'Week', 'Size', 'Year', 'Type_']]
+    x1 = df_numeric.to_numpy()
+
+    return x1

@@ -1,2 +1,2 @@
 from train import train
-from predict import predict_submission
+from app import predict_submission
