@@ -1,6 +1,6 @@
 import pandas as pd
 import pickle
-from process import *
+from process_data import *
 from sklearn.linear_model import LinearRegression
 from sklearn.svm import LinearSVR
 from sklearn.model_selection import train_test_split
@@ -27,7 +27,7 @@ def train_model(model, X_train, y_train, X_test=None, y_test=None, weight=None):
 
 
 def main():
-    data_df = pd.read_csv('data.csv')
+    data_df = pd.read_csv('data/data.csv')
     train_df, test_df = train_test_split(data_df, test_size=0.2)
 
     y_train = train_df['Weekly_Sales'].to_numpy()

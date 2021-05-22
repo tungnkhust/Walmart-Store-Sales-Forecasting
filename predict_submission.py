@@ -1,5 +1,6 @@
-from process import *
+from process_data import *
 from utils import load_model
+import os
 
 
 def predict_submission(model_path, submission_path, test_path, feature_path, store_path):
@@ -30,10 +31,13 @@ def predict_submission(model_path, submission_path, test_path, feature_path, sto
 
 def main():
     model_path = 'random_forest_model.sav'
-    submission_path = 'submission.csv'
+    submission_path = 'submission/submission.csv'
     test_path = 'data/test.csv'
     feature_path = 'data/features.csv'
     store_path = 'data/stores.csv'
+
+    if os.path.exists('submission') is False:
+        os.mkdir('submission')
     predict_submission(
         model_path=model_path,
         submission_path=submission_path,
