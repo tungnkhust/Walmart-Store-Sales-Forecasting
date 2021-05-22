@@ -9,12 +9,12 @@ logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 
-model = load_model('models/')
+model = load_model('models\\random_forest_model.sav')
 
-test_path = 'data/test.csv'
-feature_path = 'data/features.csv'
-store_path = 'data/stores.csv'
-test_process_path = 'data/test_pro.csv'
+test_path = 'data\\test.csv'
+feature_path = 'data\\features.csv'
+store_path = 'data\\stores.csv'
+test_process_path = 'data\\test_pro.csv'
 
 if os.path.exists(test_process_path):
     test_df = pd.read_csv(test_process_path)
@@ -34,8 +34,8 @@ def get_predict(sample):
     x = process_pipeline(df)
     y = model.predict(x)
     return {
-        "Date": df["Date"],
-        "Weekly_Sales": y[0]
+        "Date": df["Date"].tolist(),
+        "Weekly_Sales": y.tolist()
     }
 
 
@@ -43,8 +43,10 @@ def get_predict(sample):
 def predict():
     if request.method == 'POST':
         sample = request.json
+        # print(sample)
+        # print(request)
         res = get_predict(sample)
-        logging.info(f'Res:  {res}')
+        # logging.info(f'Res:  {res}')
         return jsonify(res)
 
 
