@@ -9,11 +9,10 @@ const createData = async () => {
     }
     arr = await csv().fromFile('./test.csv')
     for (let i = 0; i < arr.length; i++) {
-        if (data[arr[i].Store][arr[i].Dept]) {
-            data[arr[i].Store][arr[i].Dept].push(arr[i].Date)
-        } else {
+        if (!data[arr[i].Store][arr[i].Dept]) {
             data[arr[i].Store][arr[i].Dept] = []
         }
+        data[arr[i].Store][arr[i].Dept].push(arr[i].Date)
     }
     fs.writeFileSync('./data.js', 'let Data =' + JSON.stringify(data) + '; export default Data');
 
