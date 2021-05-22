@@ -1,6 +1,6 @@
 import pandas as pd
 import pickle
-from process import *
+from process_data import *
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.neural_network import MLPRegressor
 from sklearn.model_selection import GridSearchCV
@@ -64,7 +64,7 @@ def train(X_train, y_train, X_test=None, y_test=None, weight=None):
 
 
 def main():
-    data_df = pd.read_csv('data.csv')
+    data_df = pd.read_csv('data/data.csv')
     train_df, test_df = train_test_split(data_df, test_size=0.2)
 
     y_train = train_df['Weekly_Sales'].to_numpy()
@@ -75,7 +75,7 @@ def main():
 
     weight = get_weight(test_df)['weight'].to_numpy()
     model = train(X_train, y_train, X_test, y_test, weight)
-    filename = 'random_forest_model.sav'
+    filename = 'models/random_forest_model.sav'
     pickle.dump(model, open(filename, 'wb'))
 
 
