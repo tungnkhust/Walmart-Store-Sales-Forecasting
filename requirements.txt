@@ -1,5 +1,5 @@
 pandas
-sklearn=0.23.0
+sklearn==0.23.0
 flask
 matplotlib
 seaborn
