@@ -14,7 +14,7 @@ def create_id(df):
         store = row['Store']
         dept = row['Dept']
         date = row['Date']
-        id = f'{store}_{dept}_{date}'
+        id = f'{store}_{dept}'
         ids.append(id)
     df['ID'] = ids
     return df
