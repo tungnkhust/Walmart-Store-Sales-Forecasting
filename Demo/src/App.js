@@ -1,11 +1,19 @@
 import React from 'react'
 import data from './data/data'
-import { Form } from 'react-bootstrap'
+import { Form, Col, Row, Button } from 'react-bootstrap'
+import api from './api/api'
 import 'bootstrap/dist/css/bootstrap.min.css';
 class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      store: 1,
+      dept: 1,
+    }
+  }
+
   getStoreOption = () => {
     let options = []
-    console.log(data)
     for (let key in data) {
       options.push(
         <option key={key} value={key}>{key}</option>
@@ -13,15 +21,64 @@ class App extends React.Component {
     }
     return options
   }
+
+  getDeptOption = (store) => {
+    let options = []
+    for (let key in data[store]) {
+      options.push(
+        <option key={key} value={key}>{key}</option>
+      )
+    }
+    return options
+  }
+
+  changeStore = (e) => {
+    this.setState({ store: e.target.value })
+  }
+  changeDept = (e) => {
+    this.setState({ dept: e.target.value })
+  }
+
+  submit = async (e) => {
+    e.preventDefault()
+    try {
+      let res = await api.getPredic(this.state.store, this.state.dept)
+      console.log(res)
+    } catch (err) {
+      console.log(err)
+    }
+  }
   render() {
     return (
       <div className="container">
-        <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label>Store</Form.Label>
-          <Form.Control as="select">
-            {this.getStoreOption()}
-          </Form.Control>
-        </Form.Group>
+        <Form>
+          <Form.Group controlId="exampleForm.ControlSelect1">
+            <Row>
+              <div className="h1">Demo</div>
+            </Row>
+            <Row>
+              <Col>
+                <Form.Label>Store</Form.Label>
+                <Form.Control as="select" onChange={this.changeStore}>
+                  {this.getStoreOption()}
+                </Form.Control>
+              </Col>
+              <Col>
+                <Form.Label>Department</Form.Label>
+                <Form.Control as="select">
+                  {this.getDeptOption(this.state.store)}
+                </Form.Control>
+              </Col>
+            </Row>
+          </Form.Group>
+          <Form.Group>
+            <Row>
+              <Col>
+                <Button variant="primary" type="submit" className="w-100" onClick={this.submit}>Submit</Button>
+              </Col>
+            </Row>
+          </Form.Group>
+        </Form>
       </div>
     )
   }
