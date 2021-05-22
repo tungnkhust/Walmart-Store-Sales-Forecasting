@@ -30,7 +30,7 @@ test_df = create_id(test_df)
 
 
 def get_predict(sample):
-    df = test_df.loc[test_df['ID'] == f'{sample["Store"]}_{sample["Dept"]}_{sample["Date"]}']
+    df = test_df.loc[test_df['ID'] == f'{sample["Store"]}_{sample["Dept"]}']
     x = process_pipeline(df)
     y = model.predict(x)
     return {
