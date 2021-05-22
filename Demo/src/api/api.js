@@ -1,11 +1,21 @@
 import axios from 'axios'
 
+const headers = {
+    'Content-Type': 'application/json',
+}
+
 const api = {
-    getPredic: async (store, dept) => {
-        return axios.post('localhost:5000/predic', {
-            Store: store,
-            Dept: dept
-        })
+    getPredict: async (store, dept) => {
+        return axios.post(
+            'http://localhost:5000/predict',
+            {
+                Store: store,
+                Dept: dept
+            },
+            {
+                headers: headers
+            }
+        )
     }
 }
 
