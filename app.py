@@ -34,9 +34,7 @@ def get_predict(sample):
     x = process_pipeline(df)
     y = model.predict(x)
     return {
-        "Store": sample['Store'],
-        "Dept": sample["Dept"],
-        "Date": sample["Date"],
+        "Date": df["Date"],
         "Weekly_Sales": y[0]
     }
 
