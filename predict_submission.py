@@ -30,7 +30,7 @@ def predict_submission(model_path, submission_path, test_path, feature_path, sto
 
 
 def main():
-    model_path = 'random_forest_model.sav'
+    model_path = 'models/random_forest_model.sav'
     submission_path = 'submission/submission.csv'
     test_path = 'data/test.csv'
     feature_path = 'data/features.csv'
@@ -38,6 +38,7 @@ def main():
 
     if os.path.exists('submission') is False:
         os.mkdir('submission')
+
     predict_submission(
         model_path=model_path,
         submission_path=submission_path,
