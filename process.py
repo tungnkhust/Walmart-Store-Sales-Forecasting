@@ -156,7 +156,6 @@ def process_pipeline(df: pd.DataFrame):
     df = process_date(df)
     # df = fill_na(df)
     # df = process_markdown_na(df)
-
     df['Type_'] = df['Type'].apply(lambda x: convert_type(x))
     df_numeric = df[['Store', 'Dept', 'IsHoliday', 'Week', 'Size', 'Year', 'Type_']]
     x1 = df_numeric.to_numpy()

@@ -12,7 +12,7 @@ def predict_submission(model_path, submission_path, test_path, feature_path, sto
     X_test = process_pipeline(test_df)
 
     model = load_model(model_path)
-    print(X_test.shape)
+    print('predict submission')
     model.predict(X_test)
 
     ids = []
@@ -25,10 +25,11 @@ def predict_submission(model_path, submission_path, test_path, feature_path, sto
     y_preds = model.predict(X_test).tolist()
     submission_df = pd.DataFrame({'ID': ids, 'Weekly_Sales': y_preds})
     submission_df.to_csv(submission_path, index=False)
+    print('done')
 
 
 def main():
-    model_path = 'model.sav'
+    model_path = 'random_forest_model.sav'
     submission_path = 'submission.csv'
     test_path = 'data/test.csv'
     feature_path = 'data/features.csv'
