@@ -34,6 +34,13 @@ class ApexChart extends React.Component {
                 xaxis: {
                     type: 'datetime',
                 },
+                yaxis: {
+                    "labels": {
+                        "formatter": function (val) {
+                            return val.toFixed(2)
+                        }
+                    }
+                }
             },
 
 

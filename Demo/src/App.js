@@ -79,7 +79,7 @@ class App extends React.Component {
               </Col>
               <Col>
                 <Form.Label>Department</Form.Label>
-                <Form.Control as="select">
+                <Form.Control as="select" onChange={this.changeDept}>
                   {this.getDeptOption(this.state.store)}
                 </Form.Control>
               </Col>
